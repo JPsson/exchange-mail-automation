@@ -1,0 +1,12 @@
+{
+  "name": "playwright-desktop-app",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron": "^33.0.2",
+    "playwright": "^1.48.0"
+  }
+}
