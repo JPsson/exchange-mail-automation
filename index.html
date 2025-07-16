@@ -4,22 +4,109 @@
   <meta charset="UTF-8">
   <title>Exchange automator</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    label { display: block; margin-bottom: 5px; font-weight: bold; }
-    input { width: 100%; padding: 8px; margin-bottom: 15px; }
-    button { padding: 10px; width: 100%; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
-    button:hover { background-color: #45a049; }
-    #status { margin-top: 10px; color: #333; }
+    body 
+    { 
+      font-family: Arial, sans-serif; 
+      padding: 20px; 
+    }
+
+    label 
+    { 
+      display: block; 
+      margin-bottom: 5px; 
+      font-weight: bold; 
+    }
+
+    input 
+    { 
+      width: 100%; 
+      padding: 8px; 
+      margin-bottom: 15px; 
+      box-sizing: border-box; 
+    }
+
+    button 
+    { 
+      padding: 10px; 
+      width: 100%; 
+      background-color: #4CAF50; 
+      color: white; 
+      border: none; 
+      cursor: pointer; 
+    }
+
+    button:hover 
+    {
+      background-color: #45a049; 
+    }
+
+    #status 
+    { 
+      margin-top: 10px; 
+      color: #333; 
+    }
+
+    .section 
+    {
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      box-sizing: border-box; /* ✅ Prevents padding from causing overflow */
+    }
+
+    #sharedMailboxSection 
+    {
+      border-left: 7px solid #4CAF50; /* Optional: accent stripe */
+    }
+
+    #addEmailBtn {
+      width: 40px;               /* Smaller width */
+      height: 35px;              /* Optional: make it square */
+      font-size: 20px;           /* Bigger "+" symbol */
+      background-color: #506f8d; /* Blue color */
+      color: rgb(255, 255, 255);              /* Text color */
+      padding: 0;                /* Tighten padding to center the + nicely */
+      border-radius: 5px;        /* Rounded corners */
+      margin-bottom: 15px;       /* Keeps spacing under button */
+}
   </style>
 </head>
 <body>
   <h2>Exchange Admin Automation</h2>
+<div class="section" id="sharedMailboxSection">
   <label for="sharedMailbox">Shared Mailbox Name:</label>
-  <input type="text" id="sharedMailbox" placeholder="e.g., TeamMailbox">
-  <label for="email">User Email:</label>
-  <input type="text" id="email" placeholder="e.g., john.doe@svenskakyrkan.se">
+  <input type="text" id="sharedMailbox" placeholder="e.g., Mailbox@domain.com">
+</div>
+  <div id="emailFields">
+    <label for="email">User Email:</label>
+    <input type="text" id="email" name="email" placeholder="e.g., firstname.lastname@domain.com">
+  </div>
+  <button type="button" id="addEmailBtn">+</button>
   <button id="runButton">Run</button>
   <div id="status"></div>
-  <script src="renderer.js"></script>
+  <script>
+    let emailCounter = 1;
+
+    document.getElementById('addEmailBtn').addEventListener('click', () => {
+      emailCounter++;
+
+      const emailFieldsDiv = document.getElementById('emailFields');
+
+      const label = document.createElement('label');
+      label.setAttribute('for', 'email' + emailCounter);
+
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.id = 'email' + emailCounter;
+      input.name = 'email' + emailCounter;
+      input.placeholder = 'e.g., firstname.lastname@domain.com';
+
+      emailFieldsDiv.appendChild(label);
+      emailFieldsDiv.appendChild(input);
+    });
+  </script>
 </body>
 </html>
+
