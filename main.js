@@ -31,9 +31,7 @@ app.on('activate', () => {
 });
 
 ipcMain.on('run-automation', async (event, data) => {
-  const { sharedMailbox, email } = data;
-  const userName = extractUserName(email);
-  const fullName = toFullName(userName);
+  const { sharedMailbox, emails } = data;
 
   try {
     const context = await chromium.launchPersistentContext(
@@ -43,21 +41,29 @@ ipcMain.on('run-automation', async (event, data) => {
     const page = await context.newPage();
     await page.goto('https://admin.exchange.microsoft.com');
 
+    //navigates to your shared mailbox and opens the Delegation tab
     await page.getByRole('menuitem', { name: 'mailboxes' }).click();
     await page.getByRole('searchbox', { name: 'Search Mailboxes' }).click();
     await page.getByRole('searchbox', { name: 'Search Mailboxes' }).fill(sharedMailbox); 
     await page.getByRole('searchbox', { name: 'Search Mailboxes' }).press('Enter');
-
-    //await page.getByLabel(`Display name ${sharedMailbox}`).click(); t
     await page.getByLabel(`Email address ${sharedMailbox}`).click(); 
     await page.getByRole('tab', { name: 'Delegation' }).click();
+
+    // now loop through each user
+    for (const email of emails) {
+    const userName = extractUserName(email);
+    const fullName = toFullName(userName);
+
+    // Send As
     await page.getByRole('button', { name: 'modifying send as member edit' }).click();
     await searchUserInDelegationPanels(page, userName, fullName);
+
+    // Full Access
     await page.getByRole('button', { name: 'modifying full access members' }).click();
     await searchUserInDelegationPanels(page, userName, fullName);
+    }
 
-
-     //done
+    // done with all users – close once
     await context.close();
     mainWindow.webContents.send('automation-complete', 'Automation completed successfully!');
   } catch (error) {
@@ -76,13 +82,14 @@ function toFullName(userName) {
 }
 
 //Search user in Send as and Read and Manage (Full access) sections under delegation panel.
-async function searchUserInDelegationPanels(page, userName, fullName) {
+async function searchUserInDelegationPanels(page, userName, fullName, email) {
     await page.getByRole('menuitem', { name: 'Add members' }).click();
     const panelBody = page.locator('#AddPermissions_fp_body');
     const searchBox = panelBody.locator('.ms-SearchBox-field');
     await searchBox.click();
-    await searchBox.fill(userName);
+    await searchBox.fill(fullName);
     await page.getByRole('row').filter({ hasText: fullName }).getByLabel('').click();
+    //await page.getByText(email).click(); //Todo, fix so it uses the email address instead of full name
     await page.getByRole('button', { name: 'Save' }).click();
     await page.getByRole('button', { name: 'Confirm' }).click();
     await page.getByRole('dialog').filter({ hasText: 'BackCloseMailbox' }).getByLabel('Back').click();
