@@ -1,0 +1,96 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #FFFFFF;
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+.title {
+  font-family: 'Courier New', monospace;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #000000;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.input-section, .email-fields {
+    position: relative;
+  width: 100%;
+  margin-bottom: 0rem;
+}
+
+.input-field {
+  width: 500px;
+  height: 40px;
+  border: 1px solid #000000;
+  background-color: #FFFFFF;
+  padding: 10px;
+  font-size: 1rem;
+  color: #000000;
+  box-sizing: border-box;
+  margin-bottom: 8px;
+}
+
+.input-field::placeholder {
+  color: #999999;
+}
+
+.button-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.add-button {
+  position: absolute;
+  left: 0px;
+  Top: 110px; /*todo: fix relative to last mail input field*/
+  border: 1px solid #000000;
+  background-color: #FFFFFF;
+  color: #000000;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.run-button {
+  border: 1px solid #000000;
+  background-color: #FFFFFF;
+  color: #000000;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.add-button {
+  padding: 5px 15px;
+  font-size: 1.2rem;
+}
+
+.separator {
+  font-size: 0.9rem;
+  color: #000000;
+}
+
+.status {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: #000000;
+}
