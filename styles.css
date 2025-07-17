@@ -23,16 +23,20 @@ body {
   color: #000000;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
+ /* background-color: #f0f0f0;  Temporary - remove after testing */
+  width: 80%; /* Ensure it takes full width */
 }
 
 .input-section, .email-fields {
-    position: relative;
+  position: relative;
   width: 100%;
   margin-bottom: 0rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .input-field {
-  width: 500px;
+  width: 480px;
   height: 40px;
   border: 1px solid #000000;
   background-color: #FFFFFF;
@@ -55,9 +59,7 @@ body {
 }
 
 .add-button {
-  position: absolute;
-  left: 0px;
-  Top: 110px; /*todo: fix relative to last mail input field*/
+  position: static;
   border: 1px solid #000000;
   background-color: #FFFFFF;
   color: #000000;
@@ -66,9 +68,14 @@ body {
   text-transform: uppercase;
   padding: 10px 20px;
   cursor: pointer;
+  display: block;
+  width: fit-content;
+  order: 999; /* This ensures the button always appears last */
 }
 
 .run-button {
+  position: relative;
+  right: 55px;
   border: 1px solid #000000;
   background-color: #FFFFFF;
   color: #000000;
