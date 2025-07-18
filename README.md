@@ -8,11 +8,8 @@
 
 
 ## A lightweight Electron application that automates the tedious process of adding shared mailboxes to users in MS Exchange Admin Center.
-## Features
 
-- **One‑Click Automation** 
-- **Powered by Playwright**  
-- **Cross‑Platform**  
+- Built with **Electron, JavaScript (ES6+), HTML5, CSS3,** and **Playwright**
 
 ---
 
@@ -20,7 +17,7 @@
 
 - **Node.js** ≥ 16.x  
 - **npm** (bundled with Node.js)  
-- **Microsoft 365** admin account credentials
+- **Microsoft Exchange** admin account credentials
 
 ---
 
