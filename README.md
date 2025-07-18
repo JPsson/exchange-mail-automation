@@ -7,7 +7,7 @@
 <img width="786" height="593" alt="exchange-admin-automator" src="https://github.com/user-attachments/assets/b77bb887-733d-4814-9fae-72cd97db5651" />
 
 
-## A lightweight Electron application that automates the tedious process of adding shared mailboxes to users in MS Exchange Admin Center.
+## A lightweight Electron application that automates the process of adding shared mailboxes to users in MS Exchange Admin Center.
 
 - Built with **Electron, JavaScript (ES6+), HTML5, CSS3,** and **Playwright**
 
